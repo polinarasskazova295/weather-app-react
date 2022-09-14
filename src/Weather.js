@@ -27,7 +27,7 @@ export default function Weather(props) {
             <div className="col-6 ">
               <p>{response.data.weather[0].description}</p>
               <p> Humidity:{response.data.main.humidity}%</p>
-              <p> Wind:{response.data.wind.speed}m/s</p>
+              <p> Wind:{Math.round(response.data.wind.speed)}m/s</p>
             </div>
           </div>
         </div>
