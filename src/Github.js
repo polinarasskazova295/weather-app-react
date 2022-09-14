@@ -5,7 +5,7 @@ export default function end() {
   return (
     <div className="end">
       <a
-        href="https://github.com/polinarasskazova295/react-weather-app"
+        href="https://github.com/polinarasskazova295/weather-app-react"
         id="end-link"
       >
         Open-source
