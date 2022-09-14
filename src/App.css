@@ -1,0 +1,11 @@
+.allBody {
+  background-color: rgba(255, 255, 255, 0.334);
+ margin: 100px 250px 70px 250px;
+border-radius: 10px;
+ color:black;
+padding:20px
+}
+body{
+  background-image: url("./images/sky.gif");
+  background-size: 100%;
+}
