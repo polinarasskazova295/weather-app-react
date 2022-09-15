@@ -3,6 +3,8 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 import "./Weather.css";
 import FormattedDate from "./FormattedDate";
+import ForecastIcon from "./ForecastIcon";
+import WeatherTemperature from "./WeatherTemperature";
 
 export default function Weather(props) {
   let [city, setCity] = useState(props.defaultCity);
@@ -64,24 +66,21 @@ export default function Weather(props) {
         <div className="Weather">
           <div className="top">
             <h1>{forecast.city}</h1>
-            <p className="date"> <FormattedDate date={forecast.date} /> </p>
+            <p className="date">
+              {" "}
+              <FormattedDate date={forecast.date} />{" "}
+            </p>
             <p className=" description text-capitalize">
               {forecast.description}
             </p>
           </div>
           <div className="container">
-            <div className="row">
+            <div className="row mt-5 mb-5">
               <div className="col-6 ">
-                <p className="left-side">
-                  <img
-                    src={`http://openweathermap.org/img/wn/${forecast.icon}@2x.png`}
-                    alt={forecast.description}
-                  />
-                  <span className="temperature">
-                    {Math.round(forecast.temperature)}
-                  </span>
-                  <span className="celsium">°C</span>{" "}
-                </p>
+                <div className="left-side">
+                  <ForecastIcon code={forecast.icon} />
+                  <WeatherTemperature celsius={forecast.temperature} />
+                </div>
               </div>
               <div className="col-6 ">
                 <div className="right-side">
@@ -89,7 +88,10 @@ export default function Weather(props) {
                     {" "}
                     Humidity: <strong>{forecast.humidity}%</strong>
                   </p>
-                  <p> Wind: <strong>{forecast.wind}m/s</strong></p>
+                  <p>
+                    {" "}
+                    Wind: <strong>{forecast.wind}m/s</strong>
+                  </p>
                 </div>
               </div>
             </div>
