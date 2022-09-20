@@ -5,6 +5,7 @@ import "./Weather.css";
 import FormattedDate from "./FormattedDate";
 import ForecastIcon from "./ForecastIcon";
 import WeatherTemperature from "./WeatherTemperature";
+import Forecast from "./Forecast"
 
 export default function Weather(props) {
   let [city, setCity] = useState(props.defaultCity);
@@ -13,6 +14,7 @@ export default function Weather(props) {
   function forecastInformation(response) {
     return setForecast({
       ready: true,
+      coordinates: response.data.coord,
       temperature: Math.round(response.data.main.temp),
       humidity: response.data.main.humidity,
       wind: Math.round(response.data.wind.speed),
@@ -24,7 +26,7 @@ export default function Weather(props) {
   }
 
   function search() {
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=99da04848d12f6363764ab7d54adc040&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=73c99c48b6311d7fc949721ab46eb890&units=metric`;
     axios.get(apiUrl).then(forecastInformation);
   }
 
@@ -78,7 +80,7 @@ export default function Weather(props) {
             <div className="row mt-5 mb-5">
               <div className="col-6 ">
                 <div className="left-side">
-                  <ForecastIcon code={forecast.icon} />
+                  <ForecastIcon code={forecast.icon}  size={80}/>
                   <WeatherTemperature celsius={forecast.temperature} />
                 </div>
               </div>
@@ -97,6 +99,7 @@ export default function Weather(props) {
             </div>
           </div>
         </div>
+        <Forecast coordinates={forecast.coordinates} />
       </div>
     );
   } else {

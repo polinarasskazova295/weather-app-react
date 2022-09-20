@@ -1,7 +1,19 @@
 .forecast {
     color: black;
+    padding: 20px;
+}
+.day{
+    font-size: 24px;
+ 
+}
+.temp{
+    font-size:27px;
+}
+.temp-min{
+    color:rgba(0, 0, 0, 0.574);
+    margin-left: 10px;
     text-align: center;
-    font-size: 20px;
-    margin:0;
-    padding: 40px
+}
+.icon{
+   margin-left: 20px;
 }

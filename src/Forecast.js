@@ -1,62 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./Forecast.css"
+import axios from "axios"
+import ForecastDay from "./ForecastDay"
+
+export default function Forecast(props) {
+  let [loaded, setLoaded] = useState(false);
+  let [forecast, setForecast] = useState(null);
+
+useEffect(() => {
+  setLoaded(false);
+}, [props.coordinates]);
 
 
-export default function Forecast() {
-  return (
-    <div className="forecast">
-      <div className="row">
-        <div className="col">
-          Wednesday
-          <br />
-          <span className="red"> 23°</span>
-          <br />
-          <span className="emoji" role="img">
-            {" "}
-            🌞{" "}
-          </span>
-        </div>
-        <div className="col">
-          Thursday
-          <br />
-          <span className="red"> 22°</span>
-          <br />
-          <span className="emoji" role="img">
-            {" "}
-            ⛅️{" "}
-          </span>
-        </div>
-        <div className="col">
-          Friday
-          <br />
-          <span className="red"> 19°</span>
-          <br />
-          <span className="emoji" role="img">
-            {" "}
-            🍃{" "}
-          </span>
-        </div>
-        <div className="col">
-          Saturday
-          <br />
-          <span className="red"> 26°</span>
-          <br />
-          <span className="emoji" role="img">
-            {" "}
-            🌻{" "}
-          </span>
-        </div>
-        <div className="col">
-          Sunday
-          <br />
-          <span className="red"> 25°</span>
-          <br />
-          <span className="emoji" role="img">
-            {" "}
-            ☔️{" "}
-          </span>
-        </div>
+  function handleResponse(response) {
+    console.log(response.data);
+    setForecast(response.data.daily);
+    setLoaded(true);
+  }
+  if (loaded) {
+    console.log(forecast)
+return (
+  <div className="forecast">
+    <div className="row">
+      {forecast.map(function (dailyForecast, index) {
+        if (index < 5) {
+          return (
+      <div className="col" key={index}>
+       <ForecastDay  data={dailyForecast} />
       </div>
+          );
+        }
+      })}
     </div>
-  );
+  </div>
+);
+  } else {
+ 
+   let longitude = props.coordinates.lon;
+   let latitude = props.coordinates.lat;
+   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=73c99c48b6311d7fc949721ab46eb890&units=metric`;
+   axios.get(apiUrl).then(handleResponse);
+
+   return null;
+}
 }

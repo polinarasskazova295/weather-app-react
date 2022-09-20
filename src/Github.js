@@ -8,9 +8,9 @@ export default function end() {
         href="https://github.com/polinarasskazova295/weather-app-react"
         id="end-link"
       >
-        Open-source
+        Open-source {" "}
       </a>
-      by Polina Rasskazova
+        by Polina Rasskazova
     </div>
   );
 }
