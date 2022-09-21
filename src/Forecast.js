@@ -19,8 +19,8 @@ useEffect(() => {
     setLoaded(true);
   }
   if (loaded) {
-    console.log(forecast);
-
+    console.log(forecast)
+return (
   <div className="forecast">
     <div className="row">
       {forecast.map(function (dailyForecast, index) {
@@ -31,11 +31,10 @@ useEffect(() => {
       </div>
           );
         }
-        return null
       })}
     </div>
   </div>
-;
+);
   } else {
  
    let longitude = props.coordinates.lon;
